@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { AlertTriangle, CheckCircle, MapPin, Navigation, Clock, Won, Camera } from 'lucide-react';
+import { AlertTriangle, CheckCircle, MapPin, Navigation, Clock, DollarSign, Camera } from 'lucide-react';
 
 interface ParkingZone {
   id: string;
@@ -45,7 +44,7 @@ const ParkingInfo: React.FC<ParkingInfoProps> = ({ selectedZone }) => {
         };
       case 'paid':
         return {
-          icon: Won,
+          icon: DollarSign,
           color: 'text-yellow-600',
           bgColor: 'bg-yellow-50',
           borderColor: 'border-yellow-200',
@@ -118,7 +117,7 @@ const ParkingInfo: React.FC<ParkingInfoProps> = ({ selectedZone }) => {
               <div className="flex flex-wrap gap-2">
                 {selectedZone.info.fee && (
                   <Badge variant="outline" className="gap-1">
-                    <Won className="w-3 h-3" />
+                    <DollarSign className="w-3 h-3" />
                     {selectedZone.info.fee}
                   </Badge>
                 )}

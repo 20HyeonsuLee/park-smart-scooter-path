@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { MapPin, Navigation, Search, Camera, AlertTriangle, Clock, Won, CheckCircle } from 'lucide-react';
+import { MapPin, Navigation, Search, Camera, AlertTriangle, Clock, DollarSign, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -24,7 +23,7 @@ const Index = () => {
   const mockStats = [
     { label: '과태료 방지', value: '98%', icon: CheckCircle, color: 'text-green-600' },
     { label: '평균 절약 시간', value: '15분', icon: Clock, color: 'text-blue-600' },
-    { label: '평균 절약 비용', value: '8,000원', icon: Won, color: 'text-purple-600' }
+    { label: '평균 절약 비용', value: '8,000원', icon: DollarSign, color: 'text-purple-600' }
   ];
 
   return (
@@ -140,7 +139,7 @@ const Index = () => {
                     color: 'from-red-500 to-orange-500'
                   },
                   {
-                    icon: Won,
+                    icon: DollarSign,
                     title: '요금 정보',
                     desc: '주차 요금을 미리 확인하고 절약',
                     color: 'from-purple-500 to-pink-500'
