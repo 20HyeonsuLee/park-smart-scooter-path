@@ -1,73 +1,105 @@
-# Welcome to your Lovable project
+url: url: https://20hyeonsulee.github.io/smart-parking-guide/
 
-## Project info
+# **📌 스마트 주차 경로 안내 서비스 (Mock 기반 프로토타입)**
 
-**URL**: https://lovable.dev/projects/c2ccc4f1-22ae-4fb5-ab9b-0ac4a293d60c
+---
 
-## How can I edit this code?
+## **👤 사용자**
 
-There are several ways of editing your application.
+> 전동킥보드/자전거를 빌려서 조금 먼 거리를 빠르게 이동하려는 사람
+(목적지 도착 후 **합법적이고 저렴한 주차 공간**을 찾는 것이 중요)
+> 
 
-**Use Lovable**
+---
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/c2ccc4f1-22ae-4fb5-ab9b-0ac4a293d60c) and start prompting.
+## **🧍‍♂️ 페르소나**
 
-Changes made via Lovable will be committed automatically to this repo.
+### **🎓 페르소나 1 – 대학생 이현우 (21세, 남)**
 
-**Use your preferred IDE**
+- **배경**
+    - 대학생, 오전 9시 수업에 늦을 위기
+    - 전동 킥보드로 빠르게 캠퍼스 이동
+- **문제 상황**
+    - 도착 후 시간 아끼려다 도로가에 킥보드 세움
+    - 며칠 뒤 **과태료 5만 원 통보**
+- **니즈**
+    - “여기에 주차해도 괜찮은지”를 **미리 알고 싶다**
+    - 주차 가능/위험 구역을 **앱에서 실시간으로 확인**하고 싶다
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### **🏀 페르소나 2 – 대학생 김지후 (23세, 남)**
 
-Follow these steps:
+- **배경**
+    - 운동 좋아하는 대학생, 친구들과 농구 약속
+    - 기차역에서 한강까지 자전거 이동
+- **문제 상황**
+    - 막상 한강에 도착하니 주차 요금이 **15,000원**
+    - 쏘카존이라 비싸고, **대체 주차공간 찾기 어려움**
+- **니즈**
+    - 내가 목적지에 도착했을 때, **주차 가능한 공간이 있는지 미리 확인**하고 싶다
+    - 주차요금 정보도 함께 보고 싶다
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+---
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## **🎯 사용자 목표**
 
-# Step 3: Install the necessary dependencies.
-npm i
+- **출발 전**:
+    
+    → 전동킥보드/자전거 **주차 가능 여부를 목적지 기준으로 미리 확인**
+    
+- **주차 전**:
+    
+    → **과태료 위험** 또는 **요금 높은 공간인지 실시간으로 확인**
+    
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+---
 
-**Edit a file directly in GitHub**
+## **📘 사용자 시나리오**
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+1. 스마트폰으로 ‘스마트 주차 경로 안내 앱’ 실행
+2. 출발지/목적지를 입력
+3. 출발지 주변 킥보드/자전거 대여 위치 및 수량 확인
+4. 목적지 주변 주차 공간 지도에 표시됨 (허용/금지 구역 색상 구분)
+5. 주차 위험이 있는 지역은 경고 메시지 제공
+6. [추가기능] 사용자가 현장 사진 업로드 → 주차 가능 여부 안내
 
-**Use GitHub Codespaces**
+---
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## **💬 사용자 스토리**
 
-## What technologies are used for this project?
+1. 스마트 주차 경로 안내 앱 실행
+2. 출발지와 도착지 입력
+3. 도착지 주변에 주차할 곳이 있는지 확인
+4. 전동 킥보드 대여 후 이동
+5. 전동 킥보드 반납시 과태료 부과 여부 확인
+6. 전동 킥보드 반납
 
-This project is built with:
+**✅ 인수 조건 (Acceptance Criteria)**
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+| **조건** | **설명** |
+| --- | --- |
+| **Given** | 사용자가 앱에 접속했을 때 |
+| **When** | 출발지와 목적지를 입력하고 주차정보를 요청했을 때 |
+| **Then** | **3초 이내**에 목적지 인근의 주차 가능 공간과 위험 구역이 시각적으로 표시된다 |
 
-## How can I deploy this project?
+**🔧 핵심 가치**
 
-Simply open [Lovable](https://lovable.dev/projects/c2ccc4f1-22ae-4fb5-ab9b-0ac4a293d60c) and click on Share -> Publish.
+| **가치** | **설명** |
+| --- | --- |
+| **과태료 방지** | 주차 금지 구역 경고로 불필요한 비용 방지 |
+| **시간 절약** | 사전 경로 및 주차 정보 확인으로 도착 후 당황 없음 |
+| **지출 최적화** | 무료/저렴한 주차 공간 비교 안내로 비용 절감 |
+| **현실 기반 서비스** | 실사용자 페인포인트(실제 과태료, 주차요금) 반영 |
 
-## Can I connect a custom domain to my Lovable project?
+**🛠️ 기능 요구사항**
 
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+| **항목** |
+| --- |
+| **주요 기능** |
+| - 출발지/도착지 입력 (텍스트 박스 or 자동완성) |
+| - 출발지 주변 킥보드/자전거 위치 표시 (Mock) |
+| - 목적지 인근 주차 가능/금지 구역 시각화 (색상 지도) |
+| - 주차구역 클릭 시 요금 정보 표시 (Mock) |
+| - 위험 구역 주차 시 경고 팝업 |
+| - 사진 업로드 시 단순 분기 로직으로 주차 허용 여부 안내 (Mock 판정) |
