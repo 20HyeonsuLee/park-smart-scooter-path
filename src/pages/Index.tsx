@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { MapPin, Navigation, Search, Camera, AlertTriangle, Clock, DollarSign, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -8,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import ParkingMap from '@/components/ParkingMap';
 import LocationSearch from '@/components/LocationSearch';
 import ParkingInfo from '@/components/ParkingInfo';
+import PhotoAnalysis from '@/components/PhotoAnalysis';
 
 const Index = () => {
   console.log('Index component rendering...');
@@ -16,6 +16,7 @@ const Index = () => {
   const [destination, setDestination] = useState('');
   const [showMap, setShowMap] = useState(false);
   const [selectedZone, setSelectedZone] = useState(null);
+  const [showPhotoAnalysis, setShowPhotoAnalysis] = useState(false);
 
   const handleSearch = () => {
     console.log('Search clicked:', { departure, destination });
@@ -48,7 +49,13 @@ const Index = () => {
                 <p className="text-sm text-gray-600" style={{ fontSize: '0.875rem', color: '#4b5563' }}>킥보드 · 자전거 주차 안내</p>
               </div>
             </div>
-            <Button variant="outline" size="sm" className="gap-2" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 1rem', border: '1px solid #d1d5db', borderRadius: '0.375rem', backgroundColor: 'white' }}>
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="gap-2" 
+              onClick={() => setShowPhotoAnalysis(true)}
+              style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 1rem', border: '1px solid #d1d5db', borderRadius: '0.375rem', backgroundColor: 'white' }}
+            >
               <Camera className="w-4 h-4" style={{ width: '1rem', height: '1rem' }} />
               사진 분석
             </Button>
@@ -226,6 +233,12 @@ const Index = () => {
           <p className="text-gray-400" style={{ color: '#9ca3af' }}>안전하고 스마트한 킥보드 이용을 위한 최고의 파트너</p>
         </div>
       </footer>
+
+      {/* Photo Analysis Modal */}
+      <PhotoAnalysis 
+        isOpen={showPhotoAnalysis} 
+        onClose={() => setShowPhotoAnalysis(false)} 
+      />
     </div>
   );
 };

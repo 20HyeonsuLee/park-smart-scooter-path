@@ -1,8 +1,7 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { MapPin, AlertTriangle, CheckCircle, Navigation } from 'lucide-react';
+import { MapPin, AlertTriangle, CheckCircle, Navigation, Zap } from 'lucide-react';
 
 interface ParkingZone {
   id: string;
@@ -15,6 +14,14 @@ interface ParkingZone {
     description: string;
     availability?: number;
   };
+}
+
+interface ScooterLocation {
+  id: string;
+  type: 'kick' | 'lime' | 'beam';
+  position: { x: number; y: number };
+  battery: number;
+  available: boolean;
 }
 
 interface ParkingMapProps {
@@ -89,6 +96,52 @@ const ParkingMap: React.FC<ParkingMapProps> = ({ onZoneSelect }) => {
     }
   ];
 
+  // 킥보드 위치 데이터 추가
+  const scooterLocations: ScooterLocation[] = [
+    {
+      id: 'kick-1',
+      type: 'kick',
+      position: { x: 20, y: 40 },
+      battery: 85,
+      available: true
+    },
+    {
+      id: 'kick-2', 
+      type: 'kick',
+      position: { x: 35, y: 25 },
+      battery: 92,
+      available: true
+    },
+    {
+      id: 'lime-1',
+      type: 'lime',
+      position: { x: 50, y: 60 },
+      battery: 67,
+      available: true
+    },
+    {
+      id: 'lime-2',
+      type: 'lime',
+      position: { x: 75, y: 40 },
+      battery: 43,
+      available: false
+    },
+    {
+      id: 'beam-1',
+      type: 'beam',
+      position: { x: 40, y: 80 },
+      battery: 78,
+      available: true
+    },
+    {
+      id: 'kick-3',
+      type: 'kick',
+      position: { x: 80, y: 30 },
+      battery: 56,
+      available: true
+    }
+  ];
+
   const handleZoneClick = (zone: ParkingZone) => {
     setSelectedZone(zone);
     onZoneSelect(zone);
@@ -114,12 +167,22 @@ const ParkingMap: React.FC<ParkingMapProps> = ({ onZoneSelect }) => {
     }
   };
 
+  const getScooterColor = (type: string, available: boolean) => {
+    if (!available) return 'bg-gray-400';
+    switch (type) {
+      case 'kick': return 'bg-orange-500';
+      case 'lime': return 'bg-green-400';
+      case 'beam': return 'bg-purple-500';
+      default: return 'bg-gray-500';
+    }
+  };
+
   return (
     <Card className="border-0 shadow-xl bg-white/90 backdrop-blur-md">
       <CardHeader className="pb-4">
         <CardTitle className="flex items-center gap-2">
           <MapPin className="w-5 h-5 text-blue-600" />
-          홍대 주변 주차 정보
+          홍대 주변 주차 정보 & 킥보드 위치
         </CardTitle>
         <div className="flex flex-wrap gap-2">
           <Badge variant="outline" className="gap-1 text-green-700 border-green-300">
@@ -137,6 +200,10 @@ const ParkingMap: React.FC<ParkingMapProps> = ({ onZoneSelect }) => {
           <Badge variant="outline" className="gap-1 text-blue-700 border-blue-300">
             <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
             대여소
+          </Badge>
+          <Badge variant="outline" className="gap-1 text-orange-700 border-orange-300">
+            <Zap className="w-3 h-3" />
+            킥보드
           </Badge>
         </div>
       </CardHeader>
@@ -171,6 +238,24 @@ const ParkingMap: React.FC<ParkingMapProps> = ({ onZoneSelect }) => {
               </div>
             );
           })}
+
+          {/* 킥보드 위치 표시 */}
+          {scooterLocations.map((scooter) => (
+            <div
+              key={scooter.id}
+              className={`absolute w-6 h-6 rounded-full ${getScooterColor(scooter.type, scooter.available)} cursor-pointer transition-all duration-300 transform hover:scale-110 shadow-md flex items-center justify-center border-2 border-white ${
+                !scooter.available ? 'opacity-50' : ''
+              }`}
+              style={{
+                left: `${scooter.position.x}%`,
+                top: `${scooter.position.y}%`,
+                transform: 'translate(-50%, -50%)'
+              }}
+              title={`${scooter.type.toUpperCase()} - ${scooter.battery}% ${scooter.available ? '이용가능' : '이용불가'}`}
+            >
+              <Zap className="w-3 h-3 text-white" />
+            </div>
+          ))}
 
           {/* Selected zone info popup */}
           {selectedZone && (
